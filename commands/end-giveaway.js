@@ -1,5 +1,4 @@
-const { SlashCommandBuilder, Interaction, PermissionFlagsBits } = require("discord.js");
-const Giveaway = require("../models/Giveaway");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,7 +15,7 @@ module.exports = {
 
     /**
      * Command execution
-     * @param {Interaction} interaction
+     * @param {import("discord.js").Interaction} interaction
      */
     async execute(interaction) {
         const result = await interaction.client.giveawayManager.endGiveaway(interaction.options.getString("giveaway_id"));

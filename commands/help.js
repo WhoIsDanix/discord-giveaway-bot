@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("@discordjs/builders");
-const { SlashCommandBuilder, Interaction } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -8,7 +8,7 @@ module.exports = {
 
     /**
      * Command execution
-     * @param {Interaction} interaction
+     * @param {import("discord.js").Interaction} interaction
      */
     execute(interaction) {
         const fields = [
@@ -35,7 +35,7 @@ module.exports = {
                     \`/reroll-giveaway\`
                     \`/giveaway-list\`
                 `
-            }
+            },
         ];
 
         const embed = new EmbedBuilder().addFields(fields);

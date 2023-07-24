@@ -10,7 +10,7 @@ const GiveawaySchema = new Schema({
     winners: { type: Number, required: true },
     endTime: { type: Number, required: true },
     entries: { type: Array, of: String },
-    ended: { type: Boolean, default: false }
+    ended: { type: Boolean, default: false },
 });
 
 module.exports = model("Giveaway", GiveawaySchema);

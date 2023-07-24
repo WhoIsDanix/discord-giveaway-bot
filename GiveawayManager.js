@@ -1,13 +1,10 @@
 const {
     EmbedBuilder,
-    Client,
     ButtonBuilder,
     ButtonStyle,
     ActionRowBuilder,
-    User,
-    GuildMember,
     messageLink,
-    hyperlink
+    hyperlink,
 } = require("discord.js");
 
 const Giveaway = require("./models/Giveaway");
@@ -19,7 +16,7 @@ const ms = require("ms");
 class GiveawayManager {
     /**
      * Create new giveaway manager
-     * @param {Client} client - Discord client that should be associated with this giveaway manager
+     * @param {import("discord.js").Client} client - Discord client that should be associated with this giveaway manager
      */
     constructor(client) {
         this.client = client;
@@ -108,7 +105,7 @@ class GiveawayManager {
      * @param {{
      *      guildId: string,
      *      channelId: string,
-     *      hostedBy: User,
+     *      hostedBy: import("discord.js").User,
      *      duration: number,
      *      winners: number,
      *      prize: string,
@@ -125,14 +122,14 @@ class GiveawayManager {
             winners,
             prize,
             description,
-            color: guild?.color
+            color: guild?.color,
         });
 
         const joinButton = new ButtonBuilder()
             .setCustomId("enter-giveaway")
             .setEmoji(guild?.emoji || process.env.GIVEAWAY_EMBED_DEFAULT_EMOJI)
             .setStyle(ButtonStyle.Primary);
-        
+
         const row = new ActionRowBuilder().addComponents(joinButton);
 
         const giveawayChannel = await this.client.channels.fetch(channelId);
@@ -146,10 +143,10 @@ class GiveawayManager {
             winners,
             prize,
             description,
-            endTime
+            endTime,
         });
     }
-    
+
     /**
      * Get guild giveaways
      * @param {string} guildId - Guild ID
@@ -172,7 +169,7 @@ class GiveawayManager {
 
         const newEmbed = this.buildGiveawayEmbed({
             ...giveaway,
-            entries: giveaway.entries.length
+            entries: giveaway.entries.length,
         });
 
         await giveawayMessage.edit({ embeds: [newEmbed], ...messageOptions });
@@ -199,7 +196,7 @@ class GiveawayManager {
 
     /**
      * Make guild member enter the giveaway
-     * @param {GuildMember} member
+     * @param {import("discord.js").GuildMember} member
      * @param {string} giveawayId
      */
     async enterGiveaway(member, giveawayId) {
@@ -208,7 +205,7 @@ class GiveawayManager {
 
     /**
      * Make guild member leave the giveaway
-     * @param {GuildMember} member
+     * @param {import("discord.js").GuildMember} member
      * @param {string} giveawayId
      */
     async leaveGiveaway(member, giveawayId) {
@@ -290,7 +287,7 @@ class GiveawayManager {
         const msgLink = messageLink(giveaway.channelId, giveaway.messageId, giveaway.guildId);
         const msgHyperlink = hyperlink("↗", new URL(msgLink));
 
-        await interaction.reply(`<@${giveaway.userId}> rerolled the giveaway! Congratulations ${winnersMention}! ${msgHyperlink}`)
+        await interaction.reply(`<@${giveaway.userId}> rerolled the giveaway! Congratulations ${winnersMention}! ${msgHyperlink}`);
         return { success: true };
     }
 

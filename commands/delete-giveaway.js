@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Interaction, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,7 +15,7 @@ module.exports = {
 
     /**
      * Command execution
-     * @param {Interaction} interaction 
+     * @param {import("discord.js").Interaction} interaction
      */
     async execute(interaction) {
         const giveawayId = interaction.options.getString("giveaway_id");

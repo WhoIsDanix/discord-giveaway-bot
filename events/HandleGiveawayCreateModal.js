@@ -14,7 +14,7 @@ module.exports = {
             const description = interaction.fields.getTextInputValue("giveaway-description");
 
             const validation = interaction.client.giveawayManager.validateArguments({ duration, winners });
-            
+
             if (!validation.success) {
                 return interaction.reply({ content: validation.message, ephemeral: true });
             }
@@ -23,7 +23,7 @@ module.exports = {
                 guildId: interaction.guildId,
                 channelId: interaction.channelId,
                 hostedBy: interaction.user,
-                duration, winners, prize, description
+                duration, winners, prize, description,
             });
 
             await interaction.reply({ content: `✅ Successfully created the giveaway (ID = ${giveaway.messageId})`, ephemeral: true });

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Interaction, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
 const Guild = require("../models/Guild");
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
     
     /**
      * Command execution
-     * @param {Interaction} interaction
+     * @param {import("discord.js").Interaction} interaction
      */
     async execute(interaction) {
         const subcommandGroup = interaction.options.getSubcommandGroup();
@@ -50,13 +50,13 @@ module.exports = {
             interaction.reply({ embeds: [embed] });
         } else if (subcommandGroup === "set") {
             if (subcommand === "color") {
-                const hex = interaction.options.getString("hex");
+                let hex = interaction.options.getString("hex");
                 if (!hex.startsWith("#")) hex = "#" + hex;
 
                 if (!/^#([\da-f]{3}){1,2}$|^#([\da-f]{4}){1,2}$/i.test(hex)) {
                     return interaction.reply({ content: `💥 I could not convert \`${hex}\` to a valid color!`, ephemeral: true });
                 }
-                
+
                 await Guild.updateOne({ id: interaction.guildId }, { color: hex }, { upsert: true });
                 interaction.reply({ content: `🎉 The embed color for giveaways has beeh changed to \`${hex}\`.`, ephemeral: true });
             } else if (subcommand === "emoji") {

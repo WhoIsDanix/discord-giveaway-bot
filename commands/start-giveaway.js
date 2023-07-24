@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Interaction, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const ms = require("ms");
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
 
     /**
      * Command execution
-     * @param {Interaction} interaction 
+     * @param {import("discord.js").Interaction} interaction
      */
     async execute(interaction) {
         const duration = ms(interaction.options.getString("duration"));
@@ -38,7 +38,7 @@ module.exports = {
         if (!validation.success) {
             return interaction.reply({
                 content: validation.message,
-                ephemeral: true
+                ephemeral: true,
             });
         }
 
@@ -51,7 +51,7 @@ module.exports = {
             hostedBy: interaction.user,
             duration,
             winners,
-            prize
+            prize,
         });
         await interaction.reply({ content: `✅ Successfully created the giveaway (ID = ${giveaway.messageId})`, ephemeral: true });
     }

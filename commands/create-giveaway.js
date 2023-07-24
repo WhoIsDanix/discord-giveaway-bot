@@ -1,11 +1,10 @@
 const {
     SlashCommandBuilder,
-    Interaction,
     ModalBuilder,
     TextInputBuilder,
     TextInputStyle,
     ActionRowBuilder,
-    PermissionFlagsBits
+    PermissionFlagsBits,
 } = require("discord.js");
 
 module.exports = {
@@ -16,7 +15,7 @@ module.exports = {
 
     /**
      * Command execution
-     * @param {Interaction} interaction 
+     * @param {import("discord.js").Interaction} interaction
      */
     async execute(interaction) {
         const modal = new ModalBuilder()
@@ -35,13 +34,13 @@ module.exports = {
             .setLabel("Number of winners")
             .setStyle(TextInputStyle.Short)
             .setRequired(true);
-        
+
         const prizeInput = new TextInputBuilder()
             .setCustomId("giveaway-prize")
             .setLabel("Prize")
             .setStyle(TextInputStyle.Short)
             .setRequired(true);
-        
+
         const descriptionInput = new TextInputBuilder()
             .setCustomId("giveaway-description")
             .setLabel("Description")

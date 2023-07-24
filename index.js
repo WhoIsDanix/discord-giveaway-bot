@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const GiveawayManager = require("./GiveawayManager");
 
 const client = new Client({
-    intents: [IntentsBitField.Flags.Guilds]
+    intents: [IntentsBitField.Flags.Guilds],
 });
 
 client.commands = new Collection();
@@ -23,7 +23,7 @@ async function loadCommands() {
 
     for (const commandFile of commandFiles) {
         if (!commandFile.endsWith(".js")) continue;
-        
+
         const command = require(path.join(__dirname, "commands", commandFile));
         client.commands.set(command.data.name, command);
 
@@ -38,7 +38,7 @@ function loadEventHandlers() {
 
     for (const eventFile of eventFiles) {
         if (!eventFile.endsWith(".js")) continue;
-        
+
         const event = require(path.join(__dirname, "events", eventFile));
         client.on(event.type, (...args) => event.execute(...args));
     }

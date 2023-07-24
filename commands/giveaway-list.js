@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, Interaction, messageLink, hyperlink, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, messageLink, hyperlink, PermissionFlagsBits } = require("discord.js");
 const ms = require("ms");
 
 module.exports = {
@@ -6,10 +6,10 @@ module.exports = {
         .setName("giveaway-list")
         .setDescription("Shows list of currently running giveaways")
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
-    
+
     /**
      * Command execution
-     * @param {Interaction} interaction
+     * @param {import("discord.js").Interaction} interaction
      */
     async execute(interaction) {
         let giveaways = await interaction.client.giveawayManager.getGuildGiveaways(interaction.guildId);
@@ -27,7 +27,7 @@ module.exports = {
 
             embedFields.push({
                 name: giveaway.prize,
-                value: `${msgHyperlink} | <#${giveaway.channelId}> | Winners: **${giveaway.winners}** | Hosted by: <@${giveaway.userId}> | Ends in: ${ms(giveaway.endTime - Date.now(), { long: true })}`
+                value: `${msgHyperlink} | <#${giveaway.channelId}> | Winners: **${giveaway.winners}** | Hosted by: <@${giveaway.userId}> | Ends in: ${ms(giveaway.endTime - Date.now(), { long: true })}`,
             });
         }
 
