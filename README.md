@@ -1,5 +1,11 @@
 # discord-giveaway-bot
 
+![GitHub](https://img.shields.io/github/license/WhoIsDanix/discord-giveaway-bot)
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/WhoIsDanix/discord-giveaway-bot)
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
 Clone of [GiveawayBot](https://github.com/jagrosh/GiveawayBot) on Node.JS using discord.js and MongoDB.
 
 ## Usage
