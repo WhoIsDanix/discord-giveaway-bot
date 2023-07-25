@@ -255,14 +255,14 @@ class GiveawayManager {
         const giveawayChannel = await giveawayGuild.channels.fetch(giveaway.channelId);
         const giveawayMessage = await giveawayChannel.messages.fetch(giveaway.messageId);
 
+        const winners = this.pickWinners(giveaway.entries, giveaway.winners);
+        const winnersMention = this.winnersMention(winners);
+
         if (giveaway.entries.length !== 0) {
             await giveawayMessage.reply(`Congratulations ${winnersMention}! You won the **${giveaway.prize}**!`);
         } else {
             await giveawayMessage.reply("No valid entrants, so a winner could not be determined!");
         }
-
-        const winners = this.pickWinners(giveaway.entries, giveaway.winners);
-        const winnersMention = this.winnersMention(winners);
 
         await this.updateGiveawayEmbed(giveawayId, { components: [] });
         return { success: true };
