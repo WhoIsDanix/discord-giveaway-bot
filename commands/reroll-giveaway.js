@@ -7,7 +7,7 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .addStringOption(option => option.setName("giveaway_id").setDescription("Giveaway ID").setRequired(true))
         .addIntegerOption(option => option.setName("count").setDescription("New winner count").setMinValue(1)),
-    
+
     /**
      * Command execution
      * @param {import("discord.js").Interaction} interaction

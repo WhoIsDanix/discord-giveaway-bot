@@ -28,7 +28,7 @@ module.exports = {
                         .addStringOption(option => option.setName("emoji").setDescription("Emoji").setRequired(true))
                 )
         ),
-    
+
     /**
      * Command execution
      * @param {import("discord.js").Interaction} interaction
